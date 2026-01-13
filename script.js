@@ -66,13 +66,13 @@ form?.addEventListener("submit", async (e) => {
   msg.style.color = "#666";
 
   try {
-    // IMPORTANTE: Reemplaza estos valores con los tuyos de EmailJS
-    const serviceID = "service_rpiymwi";  // Obtener de EmailJS dashboard
-    const templateID = "template_b5az24r"; // Obtener de EmailJS dashboard
-    const publicKey = "HIMXBYfW707wE3UDV";   // Obtener de EmailJS dashboard
+    // Credenciales de EmailJS
+    const serviceID = "service_rpiymwi";
+    const templateID = "template_b5az24r";
+    const publicKey = "HIMXBYfW707wE3UDV";
 
     // Enviar correo usando EmailJS
-    const response = await emailjs.send(serviceID, templateID, {
+    await emailjs.send(serviceID, templateID, {
       from_name: `${formData.firstName} ${formData.lastName}`,
       from_email: formData.email,
       phone: formData.phone,
@@ -87,17 +87,166 @@ form?.addEventListener("submit", async (e) => {
       to_email: "colormaster487@gmail.com"
     }, publicKey);
 
-    // Éxito
-    msg.textContent = "✅ Message sent successfully! We'll contact you soon.";
-    msg.style.color = "rgba(18, 183, 106, .95)";
+    // Éxito - Mostrar alerta bonita
+    msg.textContent = "";
+    showAlert("success", "Message sent successfully!", "We'll contact you within 24 hours. Thank you!");
     form.reset();
 
   } catch (error) {
     console.error("Error sending email:", error);
-    msg.textContent = "❌ Failed to send message. Please try again or contact us directly.";
-    msg.style.color = "rgba(255, 90, 90, .95)";
+    msg.textContent = "";
+    showAlert("error", "Oops! Something went wrong", "Please try again or contact us directly at colormaster487@gmail.com");
   }
 });
+
+// ========== FUNCIÓN PARA ALERTAS MODERNAS ==========
+function showAlert(type, title, message) {
+  // Crear el overlay
+  const overlay = document.createElement("div");
+  overlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.2s ease;
+  `;
+
+  // Definir colores según el tipo
+  const colors = {
+    success: {
+      bg: "#12b76a",
+      icon: "✓",
+      gradient: "linear-gradient(135deg, #12b76a 0%, #0ea76a 100%)"
+    },
+    error: {
+      bg: "#f04438",
+      icon: "✕",
+      gradient: "linear-gradient(135deg, #f04438 0%, #d92d20 100%)"
+    }
+  };
+
+  const style = colors[type];
+
+  // Crear la alerta
+  const alert = document.createElement("div");
+  alert.style.cssText = `
+    background: white;
+    border-radius: 16px;
+    padding: 0;
+    max-width: 420px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+    overflow: hidden;
+  `;
+
+  alert.innerHTML = `
+    <div style="background: ${style.gradient}; padding: 32px 24px; text-align: center;">
+      <div style="
+        width: 64px;
+        height: 64px;
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 16px;
+        font-size: 32px;
+        font-weight: bold;
+        color: white;
+        backdrop-filter: blur(10px);
+      ">${style.icon}</div>
+      <h2 style="
+        color: white;
+        margin: 0;
+        font-size: 24px;
+        font-weight: 700;
+      ">${title}</h2>
+    </div>
+    <div style="padding: 24px;">
+      <p style="
+        color: #475467;
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0 0 24px 0;
+        text-align: center;
+      ">${message}</p>
+      <button id="alertBtn" style="
+        width: 100%;
+        background: ${style.bg};
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: inherit;
+      ">Got it!</button>
+    </div>
+  `;
+
+  // Agregar animaciones CSS
+  if (!document.getElementById("alertStyles")) {
+    const styleSheet = document.createElement("style");
+    styleSheet.id = "alertStyles";
+    styleSheet.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      #alertBtn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+      #alertBtn:active {
+        transform: translateY(0);
+      }
+    `;
+    document.head.appendChild(styleSheet);
+  }
+
+  overlay.appendChild(alert);
+  document.body.appendChild(overlay);
+
+  // Cerrar al hacer clic en el botón o en el overlay
+  const closeAlert = () => {
+    overlay.style.animation = "fadeIn 0.2s ease reverse";
+    setTimeout(() => overlay.remove(), 200);
+  };
+
+  document.getElementById("alertBtn").addEventListener("click", closeAlert);
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeAlert();
+  });
+
+  // Cerrar con tecla ESC
+  const handleEsc = (e) => {
+    if (e.key === "Escape") {
+      closeAlert();
+      document.removeEventListener("keydown", handleEsc);
+    }
+  };
+  document.addEventListener("keydown", handleEsc);
+}
 
 // ========== SERVICES CAROUSEL ==========
 (function() {
