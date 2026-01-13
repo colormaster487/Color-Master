@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Color Masters</title>
+  <meta name="description" content="Contact Color Masters for a quote: power washing, carpentry, painting, drywall, and repairs." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="Color Masters Home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__text">
+          <span class="brand__name">Color Masters</span>
+          <span class="brand__tag">Painting • Drywall • Carpentry • Washing • Repairs</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a class="nav__link" href="index.html">Home</a>
+        <a class="nav__link is-active" href="contact.html">Contact</a>
+        <a class="btn btn--primary" href="contact.html">Get a Quote</a>
+      </nav>
+
+      <button class="icon-btn burger" id="burger" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <div class="container mobile-menu__inner">
+        <a class="mobile-menu__link" href="index.html">Home</a>
+        <a class="mobile-menu__link" href="contact.html">Contact</a>
+        <a class="btn btn--primary mobile-menu__cta" href="contact.html">Get a Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="page-hero">
+      <div class="container page-hero__grid">
+        <div>
+          <div class="pill">Let’s talk about your project</div>
+          <h1 class="page-hero__title">Contact Color Masters</h1>
+          <p class="page-hero__subtitle">
+            Tell us what you need and we’ll reply as soon as possible. If you have photos, mention it in the message.
+          </p>
+
+          <div class="info-strip">
+            <div class="info-strip__item">
+              <div class="info-strip__title">Response</div>
+              <div class="info-strip__text">Usually within 24 hours</div>
+            </div>
+            <div class="info-strip__item">
+              <div class="info-strip__title">Estimate</div>
+              <div class="info-strip__text">Free & clear pricing</div>
+            </div>
+            <div class="info-strip__item">
+              <div class="info-strip__title">Work</div>
+              <div class="info-strip__text">Clean, modern finish</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-shell">
+          <form class="form" id="contactForm" novalidate>
+            <div class="form__row form__row--two">
+              <div class="field">
+                <label for="firstName">First name <span class="req">*</span></label>
+                <input id="firstName" name="firstName" type="text" required placeholder="John" />
+              </div>
+              <div class="field">
+                <label for="lastName">Last name <span class="req">*</span></label>
+                <input id="lastName" name="lastName" type="text" required placeholder="Doe" />
+              </div>
+            </div>
+
+            <div class="form__row">
+              <div class="field">
+                <label for="email">Email <span class="req">*</span></label>
+                <input id="email" name="email" type="email" required placeholder="john@email.com" />
+              </div>
+            </div>
+
+            <div class="form__row">
+              <div class="field">
+                <label for="phone">Phone <span class="req">*</span></label>
+                <input id="phone" name="phone" type="tel" required placeholder="+52 123 456 7890" />
+              </div>
+            </div>
+
+            <div class="form__row">
+              <fieldset class="field fieldset">
+                <legend>Service <span class="req">*</span></legend>
+                <div class="radio-grid">
+                  <label class="radio"><input type="radio" name="service" value="Power Washing" required /><span>Power Washing</span></label>
+                  <label class="radio"><input type="radio" name="service" value="Carpentry" required /><span>Carpentry</span></label>
+                  <label class="radio"><input type="radio" name="service" value="Painting" required /><span>Painting</span></label>
+                  <label class="radio"><input type="radio" name="service" value="Drywall" required /><span>Drywall</span></label>
+                  <label class="radio"><input type="radio" name="service" value="Repairs" required /><span>Repairs</span></label>
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="form__row">
+              <div class="field">
+                <label for="preferredDate">Preferred date</label>
+                <input id="preferredDate" name="preferredDate" type="date" />
+              </div>
+            </div>
+
+            <div class="form__row">
+              <div class="field">
+                <label for="message">Message <span class="req">*</span></label>
+                <textarea id="message" name="message" rows="4" required placeholder="Describe the project (areas, surfaces, timeline, etc.)"></textarea>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="form__row">
+              <div class="field">
+                <label for="country">Country <span class="req">*</span></label>
+                <select id="country" name="country" required>
+                  <option value="" selected disabled>Select a country</option>
+                  <option>Mexico</option>
+                  <option>United States</option>
+                  <option>Canada</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form__row">
+              <div class="field">
+                <label for="address1">Address line 1 <span class="req">*</span></label>
+                <input id="address1" name="address1" type="text" required placeholder="Street + number" />
+              </div>
+            </div>
+
+            <div class="form__row">
+              <div class="field">
+                <label for="address2">Address line 2</label>
+                <input id="address2" name="address2" type="text" placeholder="Apartment, suite, etc." />
+              </div>
+            </div>
+
+            <div class="form__row form__row--three">
+              <div class="field">
+                <label for="city">City <span class="req">*</span></label>
+                <input id="city" name="city" type="text" required placeholder="City" />
+              </div>
+              <div class="field">
+                <label for="state">State/Region <span class="req">*</span></label>
+                <input id="state" name="state" type="text" required placeholder="State" />
+              </div>
+              <div class="field">
+                <label for="zip">ZIP/Postal code <span class="req">*</span></label>
+                <input id="zip" name="zip" type="text" required placeholder="00000" />
+              </div>
+            </div>
+
+            <button class="btn btn--primary btn--full" type="submit">Send</button>
+            <p class="form__msg" id="formMsg" role="status" aria-live="polite"></p>
+            <p class="form__hint">By submitting, you agree to be contacted by Color Masters.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__left">
+          <div class="footer__brand">Color Masters</div>
+          <div class="footer__small">Painting • Drywall • Carpentry • Washing • Repairs</div>
+        </div>
+
+        <div class="footer__links">
+          <a href="index.html">Home</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="footer__copy">© <span id="year"></span> Color Masters</div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

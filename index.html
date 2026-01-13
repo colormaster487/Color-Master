@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Color Masters | Painting, Drywall, Carpentry & Power Washing</title>
+  <meta name="description" content="Color Masters provides professional painting, drywall, carpentry, power washing, and home repairs with clean, modern results and spotless cleanup.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="images/Logo.jpeg" type="image/x-icon">
+</head>
+
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html" aria-label="Color Masters Home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__text">
+          <span class="brand__name">Color Masters</span>
+          <span class="brand__tag">Painting • Drywall • Carpentry • Washing • Repairs</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <a class="nav__link is-active" href="index.html">Home</a>
+        <a class="btn btn--primary" href="contact.html">Contact Us</a>
+      </nav>
+
+      <button class="icon-btn burger" id="burger" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu" hidden>
+      <div class="container mobile-menu__inner">
+        <a class="mobile-menu__link" href="index.html">Home</a>
+        <a class="mobile-menu__link" href="contact.html">Contact Us</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <div class="pill">Clean work • Modern finish • On-time</div>
+          <h1 class="hero__title">Premium home services with a clean, modern result.</h1>
+          <p class="hero__subtitle">
+            From painting and drywall to carpentry, power washing, and repairs — we focus on prep,
+            details, and spotless cleanup.
+          </p>
+
+    
+
+          <div class="mini-stats">
+            <div class="mini-stat">
+              <div class="mini-stat__title">Prep</div>
+              <div class="mini-stat__text">Protect, patch, sand, prime.</div>
+            </div>
+            <div class="mini-stat">
+              <div class="mini-stat__title">Quality</div>
+              <div class="mini-stat__text">Crisp edges, smooth finishes.</div>
+            </div>
+            <div class="mini-stat">
+              <div class="mini-stat__title">Cleanup</div>
+              <div class="mini-stat__text">Leave the space spotless.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <div class="hero-card">
+            <div class="hero-card__top">
+            
+            </div>
+            <div class="hero-card__img" role="img" aria-label="Minimal paint texture">
+            </div>
+            <div class="hero-card__top">
+        
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES (IMAGE CAROUSEL LEFT + TEXT RIGHT) -->
+    <section class="svc" id="services">
+      <div class="container">
+        <div class="svc__top">
+          <div>
+            <div class="pill">What we offer</div>
+            <h2 class="svc__title">Services</h2>
+          </div>
+        </div>
+
+        <div class="svc__wrap" data-svc>
+          <!-- LEFT: image carousel -->
+          <div class="svc__media">
+            <div class="svc__carousel" data-carousel>
+              <button class="svc__arrow svc__arrow--left" type="button" aria-label="Previous image" data-prev>‹</button>
+
+              <div class="svc__track" data-track tabindex="0" aria-label="Service images carousel">
+                <div class="svc__slide"  role="img" aria-label="Service example image"></div>
+                <div class="svc__slide" role="img" aria-label="Service example image"></div>
+                <div class="svc__slide" role="img" aria-label="Service example image"></div>
+                <div class="svc__slide" role="img" aria-label="Service example image"></div>
+              </div>
+
+              <button class="svc__arrow svc__arrow--right" type="button" aria-label="Next image" data-next>›</button>
+              <div class="svc__dots" data-dots aria-label="Carousel pagination"></div>
+            </div>
+          </div>
+
+          <!-- RIGHT: text -->
+          <div class="svc__content">
+            <div class="svc__tabs" role="tablist" aria-label="Services">
+              <button class="svc__tab is-active" type="button" role="tab" aria-selected="true" data-service="washing">Power Washing</button>
+              <button class="svc__tab" type="button" role="tab" aria-selected="false" data-service="carpentry">Carpentry</button>
+              <button class="svc__tab" type="button" role="tab" aria-selected="false" data-service="painting">Painting</button>
+              <button class="svc__tab" type="button" role="tab" aria-selected="false" data-service="drywall">Drywall</button>
+              <button class="svc__tab" type="button" role="tab" aria-selected="false" data-service="repairs">Repairs</button>
+            </div>
+
+            <div class="svc__panel">
+              <h3 class="svc__h3" data-title>Power Washing</h3>
+              <p class="svc__p" data-desc>
+                Deep cleaning for driveways, walls, patios, and exterior surfaces to refresh and prep areas.
+              </p>
+
+              <ul class="svc__list" data-list>
+                <li>Driveways, patios, walkways</li>
+                <li>Walls, siding, fences</li>
+                <li>Prep before painting/coating</li>
+              </ul>
+
+              <div class="svc__meta">
+                <span class="svc__badge">Clean</span>
+                <span class="svc__badge">Fast</span>
+                <span class="svc__badge">Prep-ready</span>
+              </div>
+
+              <div class="svc__cta">
+                <a class="btn btn--primary" href="contact.html">Request an Estimate</a>
+                <a class="btn btn--ghost" href="contact.html">Ask a Question</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE SECTIONS (image + text) -->
+    <section class="sections">
+      <div class="container">
+        <div class="section-row">
+          <div class="media-box media-box--one" role="img" aria-label="Interior painting photo"></div>
+          <div class="section-row__content">
+            <h2>Detail-first workflow</h2>
+            <p>We protect surfaces, prepare properly, and deliver a clean finish with no mess left behind.</p>
+            <ul class="list">
+              <li>Surface prep and protection</li>
+              <li>Clean edges and smooth texture</li>
+              <li>Respectful, tidy jobsite</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section-row section-row--reverse">
+          <div class="media-box media-box--two" role="img" aria-label="Exterior service photo"></div>
+          <div class="section-row__content">
+            <h2>Exterior-ready results</h2>
+            <p>Power washing and exterior work to refresh surfaces and prepare them for lasting finishes.</p>
+            <ul class="list">
+              <li>Prep for paint or coating</li>
+              <li>Long-lasting improvement</li>
+              <li>Clean curb appeal</li>
+            </ul>
+            <a class="link" href="contact.html">Schedule an estimate →</a>
+          </div>
+        </div>
+
+        <div class="section-row">
+          <div class="media-box media-box--three" role="img" aria-label="Repair service photo"></div>
+          <div class="section-row__content">
+            <h2>Repairs & finishing</h2>
+            <p>Drywall repairs, touch-ups, carpentry details — everything to make it look complete.</p>
+            <ul class="list">
+              <li>Drywall patch & texture</li>
+              <li>Trim, doors, and small carpentry</li>
+              <li>Fixes that look invisible</li>
+            </ul>
+            <a class="link" href="contact.html">Ask a question →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__left">
+          <div class="footer__brand">Color Masters</div>
+          <div class="footer__small">Painting • Drywall • Carpentry • Washing • Repairs</div>
+        </div>
+
+        <div class="footer__links">
+          <a href="index.html">Home</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="footer__copy">© <span id="year"></span> Color Masters</div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
