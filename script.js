@@ -1,5 +1,4 @@
-
-// ========== MOBILE MENU MEJORADO ==========
+// ========== MOBILE MENU ==========
 const burger = document.getElementById("burger");
 const mobileMenu = document.getElementById("mobileMenu");
 
@@ -16,14 +15,15 @@ mobileMenu?.addEventListener("click", (e) => {
   }
 });
 
-// Contact form
+// ========== CONTACT FORM CON EMAILJS ==========
 const form = document.getElementById("contactForm");
 const msg = document.getElementById("formMsg");
 
-form?.addEventListener("submit", (e) => {
+form?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const requiredIds = ["firstName", "lastName", "email", "phone", "message", "country", "address1", "city", "state", "zip"];
+  // Validar campos requeridos
+  const requiredIds = ["firstName", "lastName", "email", "phone", "message", "address1", "city", "state", "zip"];
 
   for (const id of requiredIds) {
     const el = document.getElementById(id);
@@ -35,18 +35,71 @@ form?.addEventListener("submit", (e) => {
     }
   }
 
-  if (!form.querySelector('input[name="service"]:checked')) {
-    msg.textContent = "Please select a service.";
+  // Validar al menos un servicio seleccionado
+  const selectedServices = Array.from(form.querySelectorAll('input[name="service"]:checked'))
+    .map(cb => cb.value);
+  
+  if (selectedServices.length === 0) {
+    msg.textContent = "Please select at least one service.";
     msg.style.color = "rgba(255, 90, 90, .95)";
     return;
   }
 
-  msg.textContent = "✅ Message sent! (Demo — no backend yet)";
-  msg.style.color = "rgba(18, 183, 106, .95)";
-  form.reset();
+  // Recopilar datos del formulario
+  const formData = {
+    firstName: document.getElementById("firstName").value,
+    lastName: document.getElementById("lastName").value,
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
+    services: selectedServices.join(", "),
+    preferredDate: document.getElementById("preferredDate").value || "Not specified",
+    message: document.getElementById("message").value,
+    address1: document.getElementById("address1").value,
+    address2: document.getElementById("address2").value || "N/A",
+    city: document.getElementById("city").value,
+    state: document.getElementById("state").value,
+    zip: document.getElementById("zip").value
+  };
+
+  // Mostrar mensaje de envío
+  msg.textContent = "Sending message...";
+  msg.style.color = "#666";
+
+  try {
+    // IMPORTANTE: Reemplaza estos valores con los tuyos de EmailJS
+    const serviceID = "service_rpiymwi";  // Obtener de EmailJS dashboard
+    const templateID = "template_b5az24r"; // Obtener de EmailJS dashboard
+    const publicKey = "HIMXBYfW707wE3UDV";   // Obtener de EmailJS dashboard
+
+    // Enviar correo usando EmailJS
+    const response = await emailjs.send(serviceID, templateID, {
+      from_name: `${formData.firstName} ${formData.lastName}`,
+      from_email: formData.email,
+      phone: formData.phone,
+      services: formData.services,
+      preferred_date: formData.preferredDate,
+      message: formData.message,
+      address_line1: formData.address1,
+      address_line2: formData.address2,
+      city: formData.city,
+      state: formData.state,
+      zip: formData.zip,
+      to_email: "colormaster487@gmail.com"
+    }, publicKey);
+
+    // Éxito
+    msg.textContent = "✅ Message sent successfully! We'll contact you soon.";
+    msg.style.color = "rgba(18, 183, 106, .95)";
+    form.reset();
+
+  } catch (error) {
+    console.error("Error sending email:", error);
+    msg.textContent = "❌ Failed to send message. Please try again or contact us directly.";
+    msg.style.color = "rgba(255, 90, 90, .95)";
+  }
 });
 
-// ========== SERVICES CAROUSEL SIN SCROLL JUMP ==========
+// ========== SERVICES CAROUSEL ==========
 (function() {
   const root = document.querySelector("[data-svc]");
   if (!root) return;
@@ -107,14 +160,12 @@ form?.addEventListener("submit", (e) => {
     });
   }
 
-  // CLAVE: Función mejorada sin scroll-behavior smooth automático
   function goToSlide(index, smooth = true) {
     if (isTransitioning) return;
     
     currentIndex = index;
     isTransitioning = true;
 
-    // Solo usar smooth scroll si se solicita
     if (smooth) {
       track.classList.add("transitioning");
     }
@@ -165,7 +216,6 @@ form?.addEventListener("submit", (e) => {
     listEl.innerHTML = service.items.map(item => `<li>${item}</li>`).join("");
   }
 
-  // Inicializar imágenes del carrusel
   slides.forEach((slide, i) => {
     if (allImages[i]) {
       slide.style.backgroundImage = `
@@ -187,7 +237,6 @@ form?.addEventListener("submit", (e) => {
     timer = null;
   }
 
-  // Event listeners
   tabs.forEach(btn => btn.addEventListener("click", () => {
     loadService(btn.dataset.service);
   }));
@@ -204,7 +253,6 @@ form?.addEventListener("submit", (e) => {
     startAuto(); 
   });
 
-  // IMPORTANTE: Usar scrollend para evitar múltiples actualizaciones
   let scrollTimeout;
   track.addEventListener("scroll", () => {
     clearTimeout(scrollTimeout);
@@ -229,13 +277,15 @@ form?.addEventListener("submit", (e) => {
   track.addEventListener("touchstart", stopAuto, { passive: true });
   track.addEventListener("touchend", startAuto, { passive: true });
 
-  // Prevenir scroll accidental de página cuando usas el carrusel
   track.addEventListener("touchmove", (e) => {
     e.stopPropagation();
   }, { passive: true });
 
   createDots();
   loadService("washing");
-  goToSlide(0, false); // Iniciar sin animación
+  goToSlide(0, false);
   startAuto();
 })();
+
+// Año en footer
+document.getElementById("year").textContent = new Date().getFullYear();
