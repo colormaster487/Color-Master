@@ -1,5 +1,3 @@
-// Footer year
-document.getElementById("year").textContent = new Date().getFullYear();
 
 // ========== MOBILE MENU MEJORADO ==========
 const burger = document.getElementById("burger");
